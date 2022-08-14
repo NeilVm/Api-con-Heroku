@@ -15,7 +15,7 @@ app.get('/ping', (req, res)=>{
     res.send(pong)
 });
 
-const PORT =  process.env.PORT || 3000;
+const PORT =  process.env.PORT;
 app.listen(PORT, function(){
     console.log("Servidor en linea", PORT)
 });
