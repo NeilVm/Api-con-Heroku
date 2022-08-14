@@ -13,13 +13,22 @@ const {Pool} = require('pg');
     
     
     
-//
+//GET
 const getUser = async (req, res) => {
     const response = await pool.query('SELECT * FROM usuario');
     res.json(response.rows);
 }
 
+// POST
+const createUser= async (req, res) => {
+    const { usuario, nombre }= req.body;
+    const response= await pool.query('INSERT INTO usuario(usuario, nombre) VALUES ( $1, $2) ',[usuario, nombre] );
+    console.log(response);
+    res.send('usuario creado');
+}
+
    
  module.exports = {
-    getUser
+    getUser,
+    createUser
  }
