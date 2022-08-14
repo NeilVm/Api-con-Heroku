@@ -25,11 +25,26 @@ const createUser= async (req, res) => {
     const response= await pool.query('INSERT INTO usuario(usuario, nombre) VALUES ( $1, $2) ',[usuario, nombre] );
     console.log(response);
     res.send('usuario creado');
-    
 }
 
-   
+//seleccion por id
+
+const getUserById = async (req, res) => {
+    const id= req.params.usuario;
+    const response = await pool.query('SELECT * FROM usuario WHERE usuario = $1', [id]);
+    res.json(response.rows);
+}
+
+//Delete
+const deleteUser = async (req, res) => {
+    const id = req.params.usuario;
+    const response = await pool.query('DELETE FROM usuario WHERE usuario =$1', [id]);
+    console.log(response);
+    res.json(`User ${id}  deleted successfully `);
+}
  module.exports = {
     getUser,
-    createUser
+    createUser,
+    getUserById,
+    deleteUser
  }
