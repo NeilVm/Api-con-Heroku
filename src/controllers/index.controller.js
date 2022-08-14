@@ -1,21 +1,26 @@
-const { Pool, Client } = require('pg')
-const connectionString = 'postgres://nyxxhahekqyrnm:d42a0f7252d1f103fe296fd4d2386fb8b57ce19a13dce7a16433e421fa8faa1e@ec2-34-193-44-192.compute-1.amazonaws.com:5432/d8hiluub25otjj'
+const { Client } = require("pg");
 
-const pool = new Pool({
-  connectionString,
-})
+const obtenerCategorias =async () =>{
+const client = new Client({
+  user: "nyxxhahekqyrnm",
+  host: "ec2-34-193-44-192.compute-1.amazonaws.com",
+  database: "d8hiluub25otjj",
+  password: "d42a0f7252d1f103fe296fd4d2386fb8b57ce19a13dce7a16433e421fa8faa1e",
+  port: 5432,
+  ssl:{
+    rejectUnauthorized:false
+},
+});
+await client.connect();
 
+const res = await client.query("select * from usuario");
+debugger;
+const result = res.rows;
 
-
-const getUser=  async (req, res) =>{
-    const response = await pool.query('SELECT * FROM usuarios');
-    console.log(response);
-    res.send('usuarios')
+await client.end()
+return result;
 }
+obtenerCategorias().then((result)=>{
+    console.log(result);
+});
 
-
-
-
-module.exports ={
-    getUser
-}

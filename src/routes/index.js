@@ -3,7 +3,7 @@ const router = Router();
 const {getUser} = require('../controllers/index.controller');
 const {pool}= require('../database/database');
 
-router.get('/usuarios', getUser);
+router.get('/usu',);
 
 
 
