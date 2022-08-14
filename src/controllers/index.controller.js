@@ -25,6 +25,7 @@ const createUser= async (req, res) => {
     const response= await pool.query('INSERT INTO usuario(usuario, nombre) VALUES ( $1, $2) ',[usuario, nombre] );
     console.log(response);
     res.send('usuario creado');
+    
 }
 
    
