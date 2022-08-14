@@ -1,14 +1,15 @@
 const express = require('express');
 const app = express();
 
-// middelwares
-
+// midd
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 
 
-// rutas
+// Rutas
+
 app.use(require('./routes/index'));
+
 
 const PORT =  process.env.PORT;
 app.listen(PORT, function(){

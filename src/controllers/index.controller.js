@@ -1,3 +1,4 @@
+
 const { Client } = require("pg");
 
 const obtenerCategorias =async () =>{
@@ -20,7 +21,8 @@ const result = res.rows;
 await client.end()
 return result;
 }
-obtenerCategorias().then((result)=>{
-    console.log(result);
-});
 
+
+module.exports ={
+    result
+}
