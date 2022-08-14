@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(require('./routes/index'));
 
 
-const PORT =  process.env.PORT;
+const PORT =  process.env.PORT || 3000;
 app.listen(PORT, function(){
     console.log("Servidor en linea", PORT)
 });
