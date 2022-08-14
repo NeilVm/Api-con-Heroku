@@ -8,6 +8,7 @@ const pool = new Pool({connectionString})
 const getUser=  async (req, res) =>{
     const response = await pool.query('SELECT * FROM usuarios');
     console.log(response);
+    res.send('usuarios')
 }
 
 
