@@ -35,6 +35,16 @@ const getUserById = async (req, res) => {
     res.json(response.rows);
 }
 
+// Update
+const updateUser = async (req, res) => {
+ const id = req.params.usuario;
+ const {nombre}= req.body;
+ const response = await pool.query('UPDATE usuario SET  nombre =$1 where usuario = $2',[ nombre, id]);
+ console.log(response);
+ res.json('user update');
+
+}
+
 //Delete
 const deleteUser = async (req, res) => {
     const id = req.params.usuario;
@@ -46,5 +56,6 @@ const deleteUser = async (req, res) => {
     getUser,
     createUser,
     getUserById,
-    deleteUser
+    deleteUser,
+    updateUser
  }
