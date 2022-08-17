@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const {Pool} = require('pg');
 
     const pool = new Pool({
@@ -52,10 +53,56 @@ const deleteUser = async (req, res) => {
     console.log(response);
     res.json(`User ${id}  deleted successfully `);
 }
+// Mostrar datos
+
+const MosUser = async (req, res) => {
+    const response = await pool.query('SELECT * FROM registro');
+    res.json(response.rows);
+}
+
+// registro
+const RegisterUser= async (req, res) => {
+    const {id, nombre, apellido, correo, contraseña, edad, direccion }= req.body;
+    const response= await pool.query('INSERT INTO registro (id, nombre, apellido, correo, contraseña, edad, direccion) VALUES ( $1, $2, $3, $4, $5, $6, $7)',[id, nombre, apellido, correo, contraseña,edad, direccion] );
+    console.log(response);
+    res.send('usuario creado');
+}
+// login
+const loginUser=  async(req, res) => {
+
+    const user = await pool.query('SELECT * FROM registro where id= 2');
+    jwt.sign({user}, 'secretKey' , (err, token) => {
+        res.json({
+            token
+            
+        });
+    });
+
+    
+
+   jwt.verify(req.token, 'secretKey', (error, authData) => {
+        if(error){
+            res.sendStatus(403);
+        }else{
+            res.json({
+            mensaje: "Todo listo",
+            authData
+
+            });
+        }
+    });
+    
+    
+}
+
  module.exports = {
     getUser,
     createUser,
     getUserById,
     deleteUser,
-    updateUser
+    updateUser,
+    MosUser,
+    RegisterUser,
+    loginUser,
+  
  }
