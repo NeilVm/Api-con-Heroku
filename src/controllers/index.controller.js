@@ -15,14 +15,14 @@ const {Pool} = require('pg');
     
 //GET
 const getUser = async (req, res) => {
-    const response = await pool.query('SELECT * FROM usuario');
+    const response = await pool.query('SELECT * FROM prueba');
     res.json(response.rows);
 }
 
 // POST
 const createUser= async (req, res) => {
     const { usuario, nombre }= req.body;
-    const response= await pool.query('INSERT INTO usuario(usuario, nombre) VALUES ( $1, $2) ',[usuario, nombre] );
+    const response= await pool.query('INSERT INTO prueba(usuario, nombre) VALUES ( $1, $2) ',[usuario, nombre] );
     console.log(response);
     res.send('usuario creado');
 }
@@ -31,7 +31,7 @@ const createUser= async (req, res) => {
 
 const getUserById = async (req, res) => {
     const id= req.params.usuario;
-    const response = await pool.query('SELECT * FROM usuario WHERE usuario = $1', [id]);
+    const response = await pool.query('SELECT * FROM prueba WHERE usuario = $1', [id]);
     res.json(response.rows);
 }
 
@@ -39,7 +39,7 @@ const getUserById = async (req, res) => {
 const updateUser = async (req, res) => {
  const id = req.params.usuario;
  const {nombre}= req.body;
- const response = await pool.query('UPDATE usuario SET  nombre =$1 where usuario = $2',[ nombre, id]);
+ const response = await pool.query('UPDATE prueba SET  nombre =$1 where usuario = $2',[ nombre, id]);
  console.log(response);
  res.json('user update');
 
