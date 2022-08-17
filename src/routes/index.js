@@ -16,7 +16,7 @@ router.put('/users/:usuario',updateUser);
 router.get('/api', MosUser);
 
 // Registro
-router.post('/api', RegisterUser);
+router.post('/registro', RegisterUser);
 
 // login
 
