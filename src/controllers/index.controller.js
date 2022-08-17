@@ -66,8 +66,8 @@ const MosUser = async (req, res) => {
 
 // registro
 const RegisterUser= async (req, res) => {
-    const {id, nombre, apellido, correo, contraseña, edad, direccion }= req.body;
-    const response= await pool.query('INSERT INTO reg_usu (id, nombre, apellido, correo, contraseña, edad, direccion) VALUES ( $1, $2, $3, $4, $5, $6, $7)',[id, nombre, apellido, correo, contraseña,edad, direccion] );
+    const { nombre, apellido, correo, contraseña, edad, direccion }= req.body;
+    const response= await pool.query('INSERT INTO reg_usu ( nombre, apellido, correo, contraseña, edad, direccion) VALUES ( $1, $2, $3, $4, $5, $6)',[ nombre, apellido, correo, contraseña,edad, direccion] );
     console.log(response);
     res.send('usuario creado');
 }
