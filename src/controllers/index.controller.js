@@ -12,7 +12,7 @@ const {Pool} = require('pg');
     },
     });
     
-    
+ //plantillas   
     
 //GET
 const getUser = async (req, res) => {
@@ -53,6 +53,10 @@ const deleteUser = async (req, res) => {
     console.log(response);
     res.json(`User ${id}  deleted successfully `);
 }
+
+// inicio del Api 
+
+
 // Mostrar datos
 
 const MosUser = async (req, res) => {
