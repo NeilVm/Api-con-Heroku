@@ -1,11 +1,12 @@
 const express = require('express');
 const app = express();
 
+
+
 // midd
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.set("view engine", "ejs");
 
 // Rutas
 
