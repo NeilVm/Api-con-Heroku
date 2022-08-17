@@ -60,21 +60,21 @@ const deleteUser = async (req, res) => {
 // Mostrar datos
 
 const MosUser = async (req, res) => {
-    const response = await pool.query('SELECT * FROM registro');
+    const response = await pool.query('SELECT * FROM reg_usu');
     res.json(response.rows);
 }
 
 // registro
 const RegisterUser= async (req, res) => {
     const {id, nombre, apellido, correo, contraseña, edad, direccion }= req.body;
-    const response= await pool.query('INSERT INTO registro (id, nombre, apellido, correo, contraseña, edad, direccion) VALUES ( $1, $2, $3, $4, $5, $6, $7)',[id, nombre, apellido, correo, contraseña,edad, direccion] );
+    const response= await pool.query('INSERT INTO reg_usu (id, nombre, apellido, correo, contraseña, edad, direccion) VALUES ( $1, $2, $3, $4, $5, $6, $7)',[id, nombre, apellido, correo, contraseña,edad, direccion] );
     console.log(response);
     res.send('usuario creado');
 }
 // login
 const loginUser=  async(req, res) => {
 
-    const user = await pool.query('SELECT * FROM registro where id= 2');
+    const user = await pool.query('SELECT * FROM reg_usu where id= 2');
     jwt.sign({user}, 'secretKey' , (err, token) => {
         res.json({
             token
